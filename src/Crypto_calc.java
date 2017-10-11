@@ -38,7 +38,7 @@ public class Crypto_calc {
 	public static byte[] decrypt(String cipherSpec, String keySpec, byte[] keybytes, byte[] databytes) throws Exception{
 		Cipher cipher = Cipher.getInstance(cipherSpec);
         Key key = new SecretKeySpec(keybytes,keySpec);
-        cipher.init(Cipher.ENCRYPT_MODE ,key);
+        cipher.init(Cipher.DECRYPT_MODE ,key);
         return cipher.doFinal(databytes);
 	}
 
