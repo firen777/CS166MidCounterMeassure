@@ -1,4 +1,5 @@
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 /**
  * 
@@ -55,5 +56,23 @@ public class ByteUtil {
 		return new String(bytes, "UTF-8");
 	}
 	
+	/**hex String to byte[]
+	 * @param hex String of hex
+	 * @return byte array
+	 */
+	public static byte[] hexstringToByte(String hex){
+		return asciiToByte(hexToAscii(hex));
+	}
 	
+	/**byte[] to String of hex
+	 * @param bytes byte array
+	 * @return String of hex
+	 */
+	public static String byteToHexString(byte[] bytes){
+		String str="";
+		for (byte b:bytes){
+			str+=String.format("%02x", b);
+		}
+		return str;
+	}
 }
