@@ -7,6 +7,12 @@
  *
  */
 public class Subs_calc {
+	/**Caesar cipher
+	 * @param msg
+	 * @param shift shift amount
+	 * @return
+	 * @throws Exception
+	 */
 	public static String caesar(String msg, int shift) throws Exception{
 		int key = shift % 26;
 		byte[] origin = ByteUtil.asciiToByte(msg);
@@ -27,6 +33,11 @@ public class Subs_calc {
 		return ByteUtil.byteToAscii(result);
 	}
 	
+	/**Simple Substitution
+	 * @param msg
+	 * @param subs Key for substitution
+	 * @return
+	 */
 	public static String sub(String msg, String subs){
 		String result = "";
 		char[] origin = msg.toUpperCase().toCharArray();

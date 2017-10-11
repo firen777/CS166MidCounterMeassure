@@ -20,6 +20,14 @@ public class Crypto_calc {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**Encryption
+	 * @param cipherSpec Specification of the cipher. Exp: "DES/CBC/NoPadding"
+	 * @param keySpec Specification of the key. Exp: DES
+	 * @param keybytes
+	 * @param databytes
+	 * @return
+	 * @throws Exception
+	 */
 	public static byte[] encrypt(String cipherSpec, String keySpec, byte[] keybytes, byte[] databytes) throws Exception{
 		Cipher cipher = Cipher.getInstance(cipherSpec);
         Key key = new SecretKeySpec(keybytes,keySpec);
