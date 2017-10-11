@@ -96,7 +96,7 @@ public class ByteUtil {
 		return Base64.getEncoder().encode(src);
 	}
 	
-	/**
+	/**Fast exp-modular calculation //n^e%mod
 	 * @param n
 	 * @param e
 	 * @param mod
@@ -156,10 +156,18 @@ public class ByteUtil {
 		return result;
 	}
 
+	/**int to byte[4]
+	 * @param n
+	 * @return
+	 */
 	public static byte[] int2byteArr(int n){
 		return ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(n).array();
 	}
 	
+	/**byte[4] to int
+	 * @param b
+	 * @return
+	 */
 	public static int byteArr2int(byte [] b){
 		long l = 0;
 	    l |= b[0] & 0xFF;

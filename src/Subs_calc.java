@@ -7,14 +7,17 @@
  *
  */
 public class Subs_calc {
-	/**Caesar cipher
+	/**Caesar cipher. Default is shift -3
 	 * @param msg
 	 * @param shift shift amount
 	 * @return
 	 * @throws Exception
 	 */
 	public static String caesar(String msg, int shift) throws Exception{
-		int key = shift % 26;
+		int key = shift;
+		while (key<0)
+			key += 26;
+		key %= 26;
 		byte[] origin = ByteUtil.asciiToByte(msg);
 		byte[] result = new byte[origin.length];
 		

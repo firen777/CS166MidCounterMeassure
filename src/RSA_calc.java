@@ -23,7 +23,7 @@ public class RSA_calc {
 	public int p;
 	public int q;
 	public int pubE;
-	public int prvD;
+	public int pvtD;
 	
 	/**p,q is large Prime; e coprime (p-1)(q-1)
 	 * @param p
@@ -42,7 +42,7 @@ public class RSA_calc {
 		BigInteger bigQ_1 = BigInteger.valueOf(q-1);
 		BigInteger pqMix = bigP_1.multiply(bigQ_1);
 		
-		this.prvD = bigE.modInverse(pqMix).intValue();
+		this.pvtD = bigE.modInverse(pqMix).intValue();
 	}
 	
 	
@@ -81,7 +81,7 @@ public class RSA_calc {
 	 * @param msg
 	 * @return
 	 */
-	public int pub2prv(int msg){
+	public int pub2pvt(int msg){
 		return BigInteger.valueOf(msg).pow(pubE).mod(BigInteger.valueOf(pubN)).intValue();
 	}
 	
@@ -90,7 +90,7 @@ public class RSA_calc {
 	 * @param msg
 	 * @return
 	 */
-	public int pub2prvFast(int msg){
+	public int pub2pvtFast(int msg){
 		return effMod(BigInteger.valueOf(msg), BigInteger.valueOf(pubE), BigInteger.valueOf(pubN)).intValue();
 	}
 	
@@ -99,8 +99,8 @@ public class RSA_calc {
 	 * @param cipher
 	 * @return
 	 */
-	public int prv2pub(int cipher){
-		return BigInteger.valueOf(cipher).pow(prvD).mod(BigInteger.valueOf(pubN)).intValue();
+	public int pvt2pub(int cipher){
+		return BigInteger.valueOf(cipher).pow(pvtD).mod(BigInteger.valueOf(pubN)).intValue();
 	}
 	
 	/**
@@ -108,8 +108,8 @@ public class RSA_calc {
 	 * @param cipher
 	 * @return
 	 */
-	public int prv2pubFast(int cipher){
-		return effMod(BigInteger.valueOf(cipher), BigInteger.valueOf(prvD), BigInteger.valueOf(pubN)).intValue();
+	public int pvt2pubFast(int cipher){
+		return effMod(BigInteger.valueOf(cipher), BigInteger.valueOf(pvtD), BigInteger.valueOf(pubN)).intValue();
 	}
 	
 }
