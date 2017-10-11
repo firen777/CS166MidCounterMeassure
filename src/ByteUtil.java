@@ -1,5 +1,7 @@
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -153,4 +155,21 @@ public class ByteUtil {
 
 		return result;
 	}
+
+	public static byte[] int2byteArr(int n){
+		return ByteBuffer.allocate(4).order(ByteOrder.BIG_ENDIAN).putInt(n).array();
+	}
+	
+	public static int byteArr2int(byte [] b){
+		long l = 0;
+	    l |= b[0] & 0xFF;
+	    l <<= 8;
+	    l |= b[1] & 0xFF;
+	    l <<= 8;
+	    l |= b[2] & 0xFF;
+	    l <<= 8;
+	    l |= b[3] & 0xFF;
+	    return (int)l;
+	}
+
 }
