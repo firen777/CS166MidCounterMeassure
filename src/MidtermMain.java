@@ -22,7 +22,7 @@ public class MidtermMain {
 //			System.out.print(bit);
 //		}
 //		System.out.println();
-//		//////////////////
+		//////////////////
 //		RSA_calc r = new RSA_calc(1049, 1787, 1549);
 //		System.out.println(r.pubN + "," + r.pvtD + ";" + r.pub2pvt(5));
 //		
@@ -33,19 +33,20 @@ public class MidtermMain {
 //		
 //		BigInteger big = r.effMod(BigInteger.valueOf(5), BigInteger.valueOf(20), BigInteger.valueOf(35));
 //		System.out.println(big);
-//		//////////////////
+		//////////////////
 //		MD5_calc md5 = new MD5_calc();
 //		byte[] ans = md5.computeMatchVal(new byte[]{0x11, 0x11}, true);
 //		System.out.println(b.byteToAscii(ans) + ": " + b.byteToHexString(md5.md5Hash(ans)));
-//		//////////////////
+		//////////////////
 //		Subs_calc subc = new Subs_calc();
 //		
 //		System.out.println(subc.caesar("abcdefghijklm,.,.nopqrstuvwxyz", -1));
 //		System.out.println(subc.sub("abcdefghijklm,.,.nopqrstuvwxyz", "bcdegfhjiklmnopqrstuvwxyza"));
 		////////////////////
-		
-		
-		
+//		DH_calc dh = new DH_calc(17, 3, 15, 17);
+//		System.out.println(dh.debugWorking);
+//		System.out.println(dh.symKey);
+		////////////////////
 		
 	}
 
