@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.Arrays;
 
 /**
  * 
@@ -44,6 +45,37 @@ public class RSA_calc {
 		this.prvD = bigE.modInverse(pqMix).intValue();
 	}
 	
+	
+	/**
+	 * @param n
+	 * @param e
+	 * @param mod
+	 * @return n^e%mod
+	 */
+	public BigInteger effMod(BigInteger n, BigInteger e, BigInteger mod){
+		boolean[] bits = new boolean[32];
+		
+		for (int i=31; i>=0; i--) //e to 32 bits binary
+			bits[31-i] = (e.intValue() & (1<<i)) != 0;
+		
+//		for (boolean b:bits)
+//			if (b)
+//				System.out.print(1);
+//			else
+//				System.out.print(0);
+//		
+//		System.out.println("\n============");
+		
+		BigInteger result = BigInteger.ONE;
+		for (boolean b:bits)
+			if (b)
+				result = result.multiply(result).multiply(n).mod(mod);
+			else
+				result = result.multiply(result).mod(mod);
+
+		return result;
+	}
+	
 	/**
 	 * Process message with public key
 	 * @param msg
@@ -51,6 +83,15 @@ public class RSA_calc {
 	 */
 	public int pub2prv(int msg){
 		return BigInteger.valueOf(msg).pow(pubE).mod(BigInteger.valueOf(pubN)).intValue();
+	}
+	
+	/**
+	 * Process message with public key
+	 * @param msg
+	 * @return
+	 */
+	public int pub2prvFast(int msg){
+		return effMod(BigInteger.valueOf(msg), BigInteger.valueOf(pubE), BigInteger.valueOf(pubN)).intValue();
 	}
 	
 	/**
@@ -62,6 +103,13 @@ public class RSA_calc {
 		return BigInteger.valueOf(cipher).pow(prvD).mod(BigInteger.valueOf(pubN)).intValue();
 	}
 	
-	
+	/**
+	 * Process message with private key
+	 * @param cipher
+	 * @return
+	 */
+	public int prv2pubFast(int cipher){
+		return effMod(BigInteger.valueOf(cipher), BigInteger.valueOf(prvD), BigInteger.valueOf(pubN)).intValue();
+	}
 	
 }

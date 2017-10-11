@@ -1,4 +1,5 @@
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -91,5 +92,65 @@ public class ByteUtil {
 	 */
 	public static byte[] encodeB64(byte[] src){
 		return Base64.getEncoder().encode(src);
+	}
+	
+	/**
+	 * @param n
+	 * @param e
+	 * @param mod
+	 * @return n^e%mod
+	 */
+	public static BigInteger effMod(BigInteger n, BigInteger e, BigInteger mod){
+		boolean[] bits = new boolean[32];
+		
+		for (int i=31; i>=0; i--) //e to 32 bits binary
+			bits[31-i] = (e.intValue() & (1<<i)) != 0;
+		
+//		for (boolean b:bits)
+//			if (b)
+//				System.out.print(1);
+//			else
+//				System.out.print(0);
+//		
+//		System.out.println("\n============");
+		
+		BigInteger result = BigInteger.ONE;
+		for (boolean b:bits)
+			if (b)
+				result = result.multiply(result).multiply(n).mod(mod);
+			else
+				result = result.multiply(result).mod(mod);
+
+		return result;
+	}
+	
+	/**
+	 * @param n
+	 * @param e
+	 * @param mod
+	 * @return n^e%mod
+	 */
+	public static int effMod(int n, int e, int mod){
+		boolean[] bits = new boolean[32];
+		
+		for (int i=31; i>=0; i--) //e to 32 bits binary
+			bits[31-i] = (e & (1<<i)) != 0;
+		
+//		for (boolean b:bits)
+//			if (b)
+//				System.out.print(1);
+//			else
+//				System.out.print(0);
+//		
+//		System.out.println("\n============");
+		
+		int result = 1;
+		for (boolean b:bits)
+			if (b)
+				result = result*result*n % mod;
+			else
+				result = result*result % mod;
+
+		return result;
 	}
 }
