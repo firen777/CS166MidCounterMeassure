@@ -1,5 +1,6 @@
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  * 
@@ -74,5 +75,21 @@ public class ByteUtil {
 			str+=String.format("%02x", b);
 		}
 		return str;
+	}
+
+	/**Base64 byte[] decoded into numeric byte[]
+	 * @param src byte[] Base64 input
+	 * @return byte[] numeric
+	 */
+	public static byte[] decodeB64(byte[] src){
+		return Base64.getDecoder().decode(src);
+	}
+	
+	/**Numeric byte[] encoded into Base64 byte[]
+	 * @param src byte[] numeric
+	 * @return byte[] Base64
+	 */
+	public static byte[] encodeB64(byte[] src){
+		return Base64.getEncoder().encode(src);
 	}
 }
