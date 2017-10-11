@@ -39,10 +39,13 @@ public class MidtermMain {
 		
 		MD5_calc md5 = new MD5_calc();
 		
-		byte[] ans = md5.computeMatchVal(new byte[]{0x00}, true);
-		System.out.println(b.byteToAscii(ans) + ": " + b.byteToHexString(md5.md5Hash(ans)));
+//		byte[] ans = md5.computeMatchVal(new byte[]{0x11, 0x11}, true);
+//		System.out.println(b.byteToAscii(ans) + ": " + b.byteToHexString(md5.md5Hash(ans)));
+//		
+		Subs_calc subc = new Subs_calc();
 		
-		
+		System.out.println(subc.caesar("abcdefghijklm,.,.nopqrstuvwxyz", 1));
+		System.out.println(subc.sub("abcdefghijklm,.,.nopqrstuvwxyz", "bcdefghijklmnopqrstuvwxyza"));
 	}
 
 }
