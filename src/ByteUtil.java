@@ -1,16 +1,10 @@
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
 import java.util.Base64;
 
 /**
- * 
- */
-
-/**
- * @author Albert
+ * @author UnHouChan
  *
  */
 public class ByteUtil {
@@ -73,11 +67,11 @@ public class ByteUtil {
 	 * @return String of hex
 	 */
 	public static String byteToHexString(byte[] bytes){
-		String str="";
-		for (byte b:bytes){
-			str+=String.format("%02x", b);
-		}
-		return str;
+		StringBuilder sb = new StringBuilder();
+	    for (byte b : bytes) {
+	        sb.append(String.format("%02X", b));
+	    }
+		return sb.toString();
 	}
 
 	/**Base64 byte[] decoded into numeric byte[]
@@ -180,4 +174,27 @@ public class ByteUtil {
 	    return (int)l;
 	}
 
+	/**See if a given byte can be translated to a printable ASCII character (non extended)
+	 * @param b
+	 * @return
+	 */
+	public static boolean isPrintable (byte b){
+		if (32<=b && b<=126)
+			return true;
+		return false;
+	}
+
+	/** byte[] converted to String of ASCII and replace the non printable character with whitespace.
+	 * @param bytes byte array
+	 * @return ascii String
+	 * @throws Exception
+	 */
+	public static String byteToPrintableAscii(byte [] bytes){
+		StringBuilder sb = new StringBuilder();
+		for (byte b:bytes){
+			if (isPrintable(b)) sb.append((char)b);
+			else sb.append(" ");
+		}
+		return sb.toString();
+	}
 }

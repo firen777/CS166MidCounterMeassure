@@ -19,9 +19,9 @@ public class MD5_calc {
 	}
 	
 	public static byte[] computeMatchVal(byte[] condition, boolean asciiPrintable) throws Exception{
-		int count = 0;
+		int count = 1;
 		if (asciiPrintable){
-			while(count != -1){
+			while(count != 64000){
 				byte[] tempB = ByteUtil.int2byteArr(count);
 				boolean isPrintable = true;
 				for (byte b:tempB)
@@ -39,7 +39,7 @@ public class MD5_calc {
 				count++;
 			}
 		} else {
-			while(count != -1){
+			while(count != 64000){
 				byte[] tempB = ByteUtil.int2byteArr(count);
 				byte[] tempMD = md5Hash(tempB);
 				boolean match = true;

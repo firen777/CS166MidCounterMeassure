@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
@@ -10,7 +11,7 @@ public class MidtermMain {
 		
 		ByteUtil b = new ByteUtil();
 		////////////////////
-//		Knapsack_calc k = new Knapsack_calc(11, 40, new int[]{2, 5, 8, 17});
+//		Knapsack_calc k = new Knapsack_calc(17, 63, new int[]{5, 8, 15, 33});
 //		
 //		for (int i:k.pubKeyGK){
 //			System.out.print(i+",");
@@ -23,20 +24,20 @@ public class MidtermMain {
 //		}
 //		System.out.println();
 		//////////////////
-//		RSA_calc r = new RSA_calc(1049, 1787, 1549);
-//		System.out.println(r.pubN + "," + r.pvtD + ";" + r.pub2pvt(5));
+//		RSA_calc r = new RSA_calc(5, 17, 3);
+//		System.out.println(r.pubN + "," + r.pvtD + ";" + r.pub2pvt(7));
 //		
-//		System.out.println(r.pvt2pub(r.pub2pvt(77)));
-//		System.out.println(r.pub2pvt(r.pvt2pub(81)));
-//		System.out.println(r.pvt2pubFast(r.pub2pvtFast(77)));
-//		System.out.println(r.pub2pvtFast(r.pvt2pubFast(81)));
+//		System.out.println((r.pub2pvtFast(7)));
+//		System.out.println((r.pvt2pubFast(2)));
 //		
-//		BigInteger big = r.effMod(BigInteger.valueOf(5), BigInteger.valueOf(20), BigInteger.valueOf(35));
-//		System.out.println(big);
 		//////////////////
-//		MD5_calc md5 = new MD5_calc();
-//		byte[] ans = md5.computeMatchVal(new byte[]{0x11, 0x11}, true);
-//		System.out.println(b.byteToAscii(ans) + ": " + b.byteToHexString(md5.md5Hash(ans)));
+		MD5_calc md5 = new MD5_calc();
+		
+		
+		byte[] temp = b.hexstringToByte("419ee836f207c09d92566feaa14320d2");
+		
+		byte[] ans = md5.computeMatchVal(b.hexstringToByte("419ee836f207c09d92566feaa14320d2"), false);
+		System.out.println(": " + b.byteToHexString(md5.md5Hash(ans)));
 		//////////////////
 //		Subs_calc subc = new Subs_calc();
 //		
@@ -47,7 +48,8 @@ public class MidtermMain {
 //		System.out.println(dh.debugWorking);
 //		System.out.println(dh.symKey);
 		////////////////////
-		
+//		byte[] answer = Crypto_calc.encrypt("DES", "DES", new byte[] {1,2,3,4,5,6,7,8}, new byte[] {1,1,1,6,1,4,7,5});
+//		System.out.println(Arrays.toString(answer));
 	}
 
 }
